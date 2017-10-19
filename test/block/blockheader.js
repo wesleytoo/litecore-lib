@@ -10,10 +10,10 @@ var fs = require('fs');
 var should = require('chai').should();
 
 // https://test-insight.bitpay.com/block/000000000b99b16390660d79fcc138d2ad0c89a0d044c4201a02bdf1f61ffa11
-var dataRawBlockBuffer = fs.readFileSync('test/data/blk86756-testnet.dat');
-var dataRawBlockBinary = fs.readFileSync('test/data/blk86756-testnet.dat', 'binary');
-var dataRawId = '000000000b99b16390660d79fcc138d2ad0c89a0d044c4201a02bdf1f61ffa11';
-var data = require('../data/blk86756-testnet');
+var dataRawBlockBuffer = fs.readFileSync('litecoin-utils/outputs/blk400000-litecore.dat');
+var dataRawBlockBinary = fs.readFileSync('litecoin-utils/outputs/blk400000-litecore.dat', 'binary');
+var dataRawId = '1950dad9ef32cf5635202ccd9edd78b58a4cb3a945aa0a88e1960f9f9b7616d8'; // block hash
+var data = require('../../litecoin-utils/inputs/blk400000');
 
 describe('BlockHeader', function() {
 
@@ -209,13 +209,13 @@ describe('BlockHeader', function() {
     it('should instantiate from a raw block binary', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBinary);
       x.version.should.equal(2);
-      new BN(x.bits).toString('hex').should.equal('1c3fffc0');
+      new BN(x.bits).toString('hex').should.equal('1b4fbbc7');
     });
 
     it('should instantiate from raw block buffer', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBuffer);
       x.version.should.equal(2);
-      new BN(x.bits).toString('hex').should.equal('1c3fffc0');
+      new BN(x.bits).toString('hex').should.equal('1b4fbbc7');
     });
 
   });
@@ -259,10 +259,10 @@ describe('BlockHeader', function() {
   });
 
   describe('#getDifficulty', function() {
-    it('should get the correct difficulty for block 86756', function() {
+    it('should get the correct difficulty for block 400000', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBuffer);
-      x.bits.should.equal(0x1c3fffc0);
-      x.getDifficulty().should.equal(4);
+      x.bits.should.equal(0x1b4fbbc7);
+      x.getDifficulty().should.equal(821.92548534); // 821.9254853442262
     });
 
     it('should get the correct difficulty for testnet block 552065', function() {
