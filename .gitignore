@@ -21,3 +21,8 @@ bitcore.min.js
 bitcore.js.sig
 bitcore.min.js.sig
 tests.js
+
+litecore-lib.js
+litecore-lib.min.js
+litecore-lib.js.sig
+litecore-lib.min.js.sig
