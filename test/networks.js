@@ -43,6 +43,7 @@ describe('Networks', function() {
       pubkeyhash: 0x10,
       privatekey: 0x90,
       scripthash: 0x08,
+      scripthash2: 0x08,
       xpubkey: 0x0278b20e,
       xprivkey: 0x0278ade4,
       networkMagic: 0xe7beb4d4,
@@ -76,6 +77,7 @@ describe('Networks', function() {
       pubkeyhash: 0x13,
       privatekey: 0x93,
       scripthash: 0x11,
+      scripthash2: 0x11,
       xpubkey: 0x0278b20f,
       xprivkey: 0x0278ade5,
       networkMagic: 0xe7beb4d5,
@@ -93,7 +95,7 @@ describe('Networks', function() {
     networks.remove(somenet);
   });
 
-  var constants = ['name', 'alias', 'pubkeyhash', 'scripthash', 'xpubkey', 'xprivkey'];
+  var constants = ['name', 'alias', 'pubkeyhash', 'scripthash', 'scripthash2', 'xpubkey', 'xprivkey'];
 
   constants.forEach(function(key){
     it('should have constant '+key+' for livenet and testnet', function(){
@@ -109,7 +111,8 @@ describe('Networks', function() {
 
   it('can test for multiple keys', function() {
     expect(networks.get(0x6f, ['pubkeyhash', 'scripthash'])).to.equal(networks.testnet);
-    expect(networks.get(0x3a, ['pubkeyhash', 'scripthash'])).to.equal(networks.testnet);
+    expect(networks.get(0xc4, ['pubkeyhash', 'scripthash'])).to.equal(networks.testnet);
+    expect(networks.get(0x3a, ['pubkeyhash', 'scripthash2'])).to.equal(networks.testnet);
     expect(networks.get(0x6f, ['privatekey', 'port'])).to.equal(undefined);
   });
 
